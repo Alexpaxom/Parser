@@ -1,10 +1,19 @@
 package com.company.Parser;
 import com.company.Lexer.*;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 public class ParsBinaryExpression extends AbstractParser
 {
+	HashSet<String> expressionTypes = new HashSet<>();
+	public ParsBinaryExpression()
+	{
+		expressionTypes.add("ConstantExpression");
+		expressionTypes.add("BinaryExpression");
+		expressionTypes.add("IfExpression");
+		expressionTypes.add("CallExpression");
+	}
+
 	public Expression parse(Lexer.TokenList tokensList)
 	{
 		int start_idx = tokensList.getTokenIndex();
@@ -21,7 +30,7 @@ public class ParsBinaryExpression extends AbstractParser
 		else
 			isBinaryExpr = false;
 		
-		if((isBinaryExpr && !oper1.isEmpty()) && (oper1.getType().equals("ConstantExpression") || oper1.getType().equals("BinaryExpression")))
+		if(isBinaryExpr && !oper1.isEmpty() && expressionTypes.contains(oper1.getType()))
 			t = tokensList.getNextToken();
 		else	
 			isBinaryExpr = false;
@@ -34,7 +43,7 @@ public class ParsBinaryExpression extends AbstractParser
 		else
 			isBinaryExpr = false;
 		
-		if((isBinaryExpr && !oper2.isEmpty()) && (oper2.getType().equals("ConstantExpression") || oper2.getType().equals("BinaryExpression")))
+		if(isBinaryExpr && !oper2.isEmpty() && expressionTypes.contains(oper2.getType()))
 			t = tokensList.getNextToken();
 		else	
 			isBinaryExpr = false;
@@ -44,8 +53,6 @@ public class ParsBinaryExpression extends AbstractParser
 			System.out.println("Success binexpr;");
 			return new BinaryExpression(oper1, oper2, operation);
 		}
-		else	
-			isBinaryExpr = false;
 		
 		tokensList.setTokenIndex(start_idx);
 		return new Expression();

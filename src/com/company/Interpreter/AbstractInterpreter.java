@@ -16,6 +16,7 @@ public abstract class AbstractInterpreter
 		{ 
 			iterpretExpressions.add(InterpretateConstantExpression.class.getDeclaredConstructor());
 			iterpretExpressions.add(InterpretateBinaryExpr.class.getDeclaredConstructor());
+			iterpretExpressions.add(InterpretateIfExpr.class.getDeclaredConstructor());
 		} 
 		catch (Exception e) 
 		{ 

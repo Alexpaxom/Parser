@@ -10,7 +10,8 @@ public class Lexer
 		new NumberLexToken(),
 		new IdentifierLexToken(),
 		new BracketsLexToken(),
-		new OperationsLexToken()
+		new OperationsLexToken(),
+		new	IfExprLexToken()
 	}; 
 	ArrayList<Token> tokensList = new ArrayList<Token>();
 	

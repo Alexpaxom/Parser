@@ -15,6 +15,7 @@ public abstract class AbstractParser
 		{ 
 			checkExpressions.add(ParsBinaryExpression.class.getDeclaredConstructor());
 			checkExpressions.add(ParsConstantExpression.class.getDeclaredConstructor());
+			checkExpressions.add(ParsIfExpression.class.getDeclaredConstructor());
 		} 
 		catch (Exception e) 
 		{ 
