@@ -12,16 +12,15 @@ public class Interpreter extends AbstractInterpreter
 	public Expression interpretateProg(String prog) throws ParseException
 	{	
 		Lexer lexer = new Lexer();
-		System.out.println("Start Interpreter!");
-		Expression expr = parser.parse(lexer.parse(prog));
+		Expression expr = parser.parse(lexer.parse(prog), porogTree);
 		
 		porogTree.addExpression(expr);
 		
-		return interpretate(expr);
+		return interpretate(expr, porogTree);
 	}
-	
-	public Expression interpretate(Expression inExpr) throws ParseException
+
+	public Expression interpretate(Expression inExpr, ProgrammTree programmTree) throws ParseException
 	{
-		return  iterpretNextExpression(inExpr);
+		return  iterpretNextExpression(inExpr, programmTree);
 	}
 }

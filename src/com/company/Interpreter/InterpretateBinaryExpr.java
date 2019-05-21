@@ -5,7 +5,7 @@ import java.text.ParseException;
 
 public class InterpretateBinaryExpr extends AbstractInterpreter
 {
-	public Expression interpretate(Expression inExpr)  throws ParseException
+	public Expression interpretate(Expression inExpr, ProgrammTree programmTree) throws ParseException
 	{
 		BinaryExpression binExpr = null;
 		if(inExpr.getType().equals("BinaryExpression"))
@@ -13,8 +13,8 @@ public class InterpretateBinaryExpr extends AbstractInterpreter
 		else
 			return new Expression();
 		
-		ConstantExpression oper1 = (ConstantExpression)iterpretNextExpression(binExpr.getChild(0));
-		ConstantExpression oper2 = (ConstantExpression)iterpretNextExpression(binExpr.getChild(1));
+		ConstantExpression oper1 = (ConstantExpression)iterpretNextExpression(binExpr.getChild(0), programmTree);
+		ConstantExpression oper2 = (ConstantExpression)iterpretNextExpression(binExpr.getChild(1), programmTree);
 		
 		int operand1 = Integer.parseInt(oper1.value);
 		int operand2 = Integer.parseInt(oper2.value);

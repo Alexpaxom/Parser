@@ -15,9 +15,10 @@ public class ParsIfExpression extends AbstractParser
 		expressionTypes.add("BinaryExpression");
 		expressionTypes.add("IfExpression");
 		expressionTypes.add("CallExpression");
+		expressionTypes.add("VariableExpression");
 	}
 
-	public Expression parse(Lexer.TokenList tokensList)
+	public Expression parse(Lexer.TokenList tokensList, ProgrammTree programmTree)
 	{
 		int start_idx = tokensList.getTokenIndex();
 		
@@ -29,7 +30,7 @@ public class ParsIfExpression extends AbstractParser
 		Expression ifFalseExpr = null;
 		
 		if(t.value.equals("["))
-			condition = parseNextExpression(tokensList);
+			condition = parseNextExpression(tokensList, programmTree);
 		else
 			isIfExpr = false;
 
@@ -41,7 +42,7 @@ public class ParsIfExpression extends AbstractParser
 			isIfExpr = false;
 
 		if(groupToken.equals("]?{"))
-			ifTrueExpr = parseNextExpression(tokensList);
+			ifTrueExpr = parseNextExpression(tokensList, programmTree);
 		else
 			isIfExpr = false;
 
@@ -51,7 +52,7 @@ public class ParsIfExpression extends AbstractParser
 			isIfExpr = false;
 
 		if(groupToken.equals("}:{"))
-			ifFalseExpr = parseNextExpression(tokensList);
+			ifFalseExpr = parseNextExpression(tokensList, programmTree);
 		else
 			isIfExpr = false;
 
@@ -62,7 +63,6 @@ public class ParsIfExpression extends AbstractParser
 
 		if(t.value.equals("}"))
 		{
-			System.out.println("Success ifxpr;");
 			return new IfExpression(condition, ifTrueExpr, ifFalseExpr);
 		}
 

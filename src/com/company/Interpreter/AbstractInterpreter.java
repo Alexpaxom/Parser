@@ -17,6 +17,9 @@ public abstract class AbstractInterpreter
 			iterpretExpressions.add(InterpretateConstantExpression.class.getDeclaredConstructor());
 			iterpretExpressions.add(InterpretateBinaryExpr.class.getDeclaredConstructor());
 			iterpretExpressions.add(InterpretateIfExpr.class.getDeclaredConstructor());
+			iterpretExpressions.add(InterpretateFunDifinitionExpr.class.getDeclaredConstructor());
+			iterpretExpressions.add(InterpretateCallExpr.class.getDeclaredConstructor());
+			iterpretExpressions.add(InterpretateVariableExpr.class.getDeclaredConstructor());
 		} 
 		catch (Exception e) 
 		{ 
@@ -24,14 +27,14 @@ public abstract class AbstractInterpreter
 		}
 	}
 
-	protected Expression iterpretNextExpression(Expression inExpr) throws ParseException
+	protected Expression iterpretNextExpression(Expression inExpr, ProgrammTree programmTree) throws ParseException
 	{
 		for(Constructor constr : iterpretExpressions)
 		{
 			try
 			{ 
 				AbstractInterpreter curInterpreter = (AbstractInterpreter) constr.newInstance();
-				Expression expr = curInterpreter.interpretate(inExpr);
+				Expression expr = curInterpreter.interpretate(inExpr, programmTree);
 				
 				if(!expr.isEmpty())
 					return expr;
@@ -47,5 +50,5 @@ public abstract class AbstractInterpreter
 		return new Expression();
 	}
 	
-	public abstract Expression interpretate(Expression inExpr) throws ParseException;
+	public abstract Expression interpretate(Expression inExpr, ProgrammTree programmTree) throws ParseException;
 }

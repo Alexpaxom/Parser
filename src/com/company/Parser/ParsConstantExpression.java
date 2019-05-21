@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ParsConstantExpression extends AbstractParser
 {
-	public Expression parse(Lexer.TokenList tokensList)
+	public Expression parse(Lexer.TokenList tokensList, ProgrammTree programmTree)
 	{	
 		int start_idx = tokensList.getTokenIndex();
 		
@@ -23,7 +23,6 @@ public class ParsConstantExpression extends AbstractParser
 		if(t.type == "number")
 		{
 			res_val = res_val + t.value;
-			System.out.println("Success constexpr;");
 			return new ConstantExpression(res_val);
 		}
 		else

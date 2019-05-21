@@ -11,15 +11,13 @@ public class Lexer
 		new IdentifierLexToken(),
 		new BracketsLexToken(),
 		new OperationsLexToken(),
-		new	IfExprLexToken()
+		new	IfExprLexToken(),
+		new FunctionExprLexToken()
 	}; 
 	ArrayList<Token> tokensList = new ArrayList<Token>();
 	
 	public TokenList parse(String prog) throws ParseException
 	{
-		System.out.println("Lexer Start!");
-		
-		
 		char[] simols = prog.toCharArray();
 		
 		int i = 0;
@@ -50,11 +48,6 @@ public class Lexer
 			}
 				
 		} while(i < simols.length);
-		
-		for(Token token : tokensList)
-		{
-			System.out.println(token.type+" : "+token.value);
-		}
 		
 		return new TokenList(tokensList);
 	}

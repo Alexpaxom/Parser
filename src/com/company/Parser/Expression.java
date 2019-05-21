@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Expression
 {	
 	ArrayList<Expression> innerExpression = new ArrayList<Expression>();
-	
+
 	public Expression getChild(int inx)
 	{
 		return innerExpression.get(inx);

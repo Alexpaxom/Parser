@@ -12,9 +12,10 @@ public class ParsBinaryExpression extends AbstractParser
 		expressionTypes.add("BinaryExpression");
 		expressionTypes.add("IfExpression");
 		expressionTypes.add("CallExpression");
+		expressionTypes.add("VariableExpression");
 	}
 
-	public Expression parse(Lexer.TokenList tokensList)
+    public Expression parse(Lexer.TokenList tokensList, ProgrammTree programmTree)
 	{
 		int start_idx = tokensList.getTokenIndex();
 		
@@ -26,7 +27,7 @@ public class ParsBinaryExpression extends AbstractParser
 		String operation = "";
 		
 		if(t.value.equals("("))
-			oper1 = parseNextExpression(tokensList);
+			oper1 = parseNextExpression(tokensList, programmTree);
 		else
 			isBinaryExpr = false;
 		
@@ -38,7 +39,7 @@ public class ParsBinaryExpression extends AbstractParser
 		if(isBinaryExpr && t.type.equals("operation"))
 		{
 			operation = t.value;
-			oper2 = parseNextExpression(tokensList);
+			oper2 = parseNextExpression(tokensList, programmTree);
 		}
 		else
 			isBinaryExpr = false;
@@ -50,7 +51,6 @@ public class ParsBinaryExpression extends AbstractParser
 		
 		if(isBinaryExpr && t.value.equals(")"))
 		{
-			System.out.println("Success binexpr;");
 			return new BinaryExpression(oper1, oper2, operation);
 		}
 		
