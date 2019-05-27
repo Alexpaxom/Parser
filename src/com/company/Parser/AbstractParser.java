@@ -16,8 +16,8 @@ public abstract class AbstractParser
 			checkExpressions.add(ParsBinaryExpression.class.getDeclaredConstructor());
 			checkExpressions.add(ParsConstantExpression.class.getDeclaredConstructor());
 			checkExpressions.add(ParsIfExpression.class.getDeclaredConstructor());
-			checkExpressions.add(ParsArgumentListExpression.class.getDeclaredConstructor());
 			checkExpressions.add(ParsParametersListExpression.class.getDeclaredConstructor());
+			checkExpressions.add(ParsArgumentListExpression.class.getDeclaredConstructor());
 			checkExpressions.add(ParsFunDefinitionExpression.class.getDeclaredConstructor());
 			checkExpressions.add(ParsCallExpression.class.getDeclaredConstructor());
 			checkExpressions.add(ParsVariavleExpression.class.getDeclaredConstructor());

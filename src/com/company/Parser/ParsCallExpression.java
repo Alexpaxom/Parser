@@ -9,6 +9,15 @@ public class ParsCallExpression extends AbstractParser
 {
 	public ParsCallExpression()
 	{
+		try
+		{
+			checkExpressions.clear();
+			checkExpressions.add(ParsArgumentListExpression.class.getDeclaredConstructor());
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
     public Expression parse(Lexer.TokenList tokensList, ProgrammTree programmTree)
@@ -29,7 +38,7 @@ public class ParsCallExpression extends AbstractParser
 		else
 			isCallExpr = false;
 		
-		if(isCallExpr && !args.isEmpty() && args.getType().equals("ArgumentListExpression"))
+		if(isCallExpr && !args.isEmpty() && (args.getType().equals("ArgumentListExpression")))
 		{
 			return  new CallExpression(name, args);
 		}

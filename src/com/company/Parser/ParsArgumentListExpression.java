@@ -14,6 +14,7 @@ public class ParsArgumentListExpression extends AbstractParser
 		expressionTypes.add("BinaryExpression");
 		expressionTypes.add("IfExpression");
 		expressionTypes.add("CallExpression");
+		expressionTypes.add("VariableExpression");
 	}
 
 	public Expression parse(Lexer.TokenList tokensList, ProgrammTree programmTree)

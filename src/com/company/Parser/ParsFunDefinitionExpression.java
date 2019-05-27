@@ -41,7 +41,7 @@ public class ParsFunDefinitionExpression extends AbstractParser
 		else
 			isFuncDiffinition = false;
 
-		if(t.value.equals("="))
+		if(isFuncDiffinition && t.value.equals("="))
 			t = tokensList.getNextToken();
 		else
 			isFuncDiffinition = false;
@@ -56,7 +56,7 @@ public class ParsFunDefinitionExpression extends AbstractParser
 		else
 			isFuncDiffinition = false;
 
-		if(t.value.equals("}"))
+		if(isFuncDiffinition && t.value.equals("}"))
 		{
 			FunDifinitionExpression function = new FunDifinitionExpression(name, paramsList, body);
 			programmTree.addFunction(name, function);
